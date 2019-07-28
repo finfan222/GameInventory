@@ -16,7 +16,7 @@ package inventory;
  */
 public class Container {
 
-	private final Item[] items;
+	private Item[] items;
 	public int[] freeSlots;
 
 	public Container(final int size) {
@@ -24,6 +24,19 @@ public class Container {
 		this.freeSlots = new int[size];
 	}
 
+	/**
+	 * Copy old items in a new array with new size
+	 * @param newSize 
+	 */
+	public void resize(int newSize) {
+		Main.debug("Resize the items...");
+		Main.debug("Old size: ", items.length);
+		Item[] newItems = new Item[newSize];
+		System.arraycopy(items, 0, newItems, 0, newSize);
+		items = newItems;
+		Main.debug("New size: ", items.length);
+	}
+	
 	private void recalcFreeSlots() {
 		// get the size for future free slots
 		int size = 0;
